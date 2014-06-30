@@ -1,0 +1,76 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    @using (Html.BeginForm("Ambiente","Home"))
+    {
+        @Html.AntiForgeryToken()
+        
+        <div class="form-horizontal">
+            <h4>Campo</h4>
+            <hr />
+            @Html.ValidationSummary(false)
+    
+            <div class="form-group">
+                <div class="col-md-10">Quantidade de Mosquitos:</div> 
+                <input type="text" name="quantidadeMosquitos" id="quantidadeMosquitos" onchange="validarFormulario()"><br>
+            </div>
+    
+            <div class="form-group">
+                <div class="col-md-10">Quantidade de Agentes Sanitários:</div> 
+                <input type="text" name="quantidadeAgentesSanitarios" id="quantidadeAgentesSanitarios" onchange="validarFormulario()"><br>
+            </div>
+    
+            <div class="form-group">
+                <div class="col-md-10">Quantidade de Pessoas:</div> 
+                <input type="text" name="quantidadePessoas" id="quantidadePessoas" onchange="validarFormulario()"><br>
+            </div>
+    
+            <div class="form-group">
+                <div class="col-md-10">Tamanho Vertical:</div> 
+                <input type="text" name="tamanhoX" id="tamanhoX" onchange="validarFormulario()"><br>
+            </div>
+    
+            <div class="form-group">
+                <div class="col-md-10">Tamanho Horizontal:</div> 
+                <input type="text" name="tamanhoY" id="tamanhoY" onchange="validarFormulario()"><br>
+            </div>
+    
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" disabled id="button" onchange="validarFormulario()" />
+                </div>
+            </div>
+        </div>
+    }
+    <script>
+        function validarFormulario() {
+            document.getElementById("button").disabled = true;
+            var quantidadeMosquitos = document.getElementById("quantidadeMosquitos").value;
+            var quantidadeAgentesSanitarios = document.getElementById("quantidadeAgentesSanitarios").value;
+            var quantidadePessoas = document.getElementById("quantidadePessoas").value;
+            var tamanhoX = document.getElementById("tamanhoX").value;
+            var tamanhoY = document.getElementById("tamanhoY").value;
+            if (!isNaN(quantidadeMosquitos) && !quantidadeMosquitos == "") {
+                if (!isNaN(quantidadeAgentesSanitarios) && !quantidadeAgentesSanitarios == "") {
+                    if (!isNaN(quantidadePessoas) && !quantidadePessoas == "") {
+                        if (!isNaN(tamanhoX) && !tamanhoX == "") {
+                            if (!isNaN(tamanhoY) && !tamanhoY == "") {
+                                document.getElementById("button").disabled = false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
